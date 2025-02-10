@@ -1,36 +1,50 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy to gh-pages (User Site Deployment)
 
 on:
   push:
     branches:
-      - main  # Change this if your default branch is named differently
+      - main  # Trigger the workflow when you push to the source branch
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # 1. Check out the source from main.
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          ref: main
 
-      # Step 2: Set up Python
+      # 2. Set up Python.
       - name: Set Up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      # Step 3: Install Dependencies
+      # 3. Install Dependencies.
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      # Step 4: Build the Site
+      # 4. Build the Site.
       - name: Build Site
         run: python parser.py
 
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_PAT}}
-          publish_dir: ./build
+      # 5. Deploy the Build Output to the gh-pages Branch.
+      - name: Deploy to gh-pages
+        run: |
+          echo "Creating deployment directory..."
+          mkdir deploy
+          echo "Copying build output to deployment directory..."
+          rsync -av --delete build/ deploy/
+          cd deploy
+          echo "Initializing git repository..."
+          git init
+          git config user.email "your-email@example.com"
+          git config user.name "Your Name"
+          git add .
+          git commit -m "Deploy updated site"
+          echo "Force pushing to gh-pages branch..."
+          git push --force "https://${{ secrets.GH_PAT }}@github.com/RasenRhino/rasenrhino.github.io.git" HEAD:gh-pages
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
