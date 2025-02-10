@@ -1,3 +1,7 @@
+---
+title: "Ridham's Blog"
+date: 2025-02-09
+---
 I'm **Ridham Bhagat**, a computer engineering student specializing in cybersecurity at Northeastern University. My primary interests lie in binary exploitation, web security, and embedded systems. You can view my resume [here](/assets/ridham_bhagat_cv.pdf).
 
 ### **Areas of Expertise and Interests**
@@ -24,23 +28,21 @@ I'm **Ridham Bhagat**, a computer engineering student specializing in cybersecur
   - **Automotive Enthusiast**: Known for offering informal advice on car and motorcycle purchases. I enjoy exploring trails on weekends and going on long drives.  
   - **Music**: Appreciate genres such as metal/punk rock, J-Rock indie, and electronic music.
 
----
+
 
 ### **Current Pursuits**
 
 - Exploring open-source projects in the security domain, particularly the [Artemis Scanner](https://github.com/CERT-Polska/Artemis).  
 - Diving deeper into binary exploitation and web security. I have foundational knowledge of malware analysis and other related topics.
 
----
+
 
 ### **What You Can Find Here**
 
 - **[Posts](/posts/)**: A collection of my ongoing projects and topics of interest.  
 - **[Tinkering](/tinkering/)**: A dedicated section for documenting my deep dives into niche topics, experimental notes, and explorations into technical rabbit holes.
 
----
 
 ### **Contact Information**
 Feel free to reach out to me via email at **ridhambhagat@gmail.com**.
 
----
