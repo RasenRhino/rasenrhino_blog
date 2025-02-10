@@ -1,1 +1,46 @@
-aaa
+I'm **Ridham Bhagat**, a computer engineering student specializing in cybersecurity at Northeastern University. My primary interests lie in binary exploitation, web security, and embedded systems. You can view my resume [here](/assets/ridham_bhagat_cv.pdf).
+
+### **Areas of Expertise and Interests**
+
+- **Development**:  
+  Proficient in website development with experience in both corporate and freelance environments. Skilled in MEAN stack, Java, PHP, and embedded servers, as well as big data technologies like the ELK stack, Kubernetes, and Docker.
+
+- **Embedded Systems**:  
+  Experienced in working with embedded firmware, embedded Linux, and real-time systems.
+
+- **Binary Exploitation**:  
+  Active in Capture The Flag (CTF) competitions, with hands-on experience in intermediate-level challenges involving binary exploitation, blue teaming. 
+
+- **Networking**:  
+  Knowledgeable in networking and systems administration, with a growing focus on small-to-medium-scale network setup, administration, and quality of service (QoS) considerations. Currently advancing into network security.
+
+- **Security**:  
+  Passionate about application and network security. I am actively exploring malware analysis, web security, and related domains. Check out my [posts](/posts/) for updates on my recent projects.
+
+- **Software-Defined Radios (SDRs)**:  
+  Enthusiastically explored SDR technology and its applications.
+
+- **Personal Interests**:  
+  - **Automotive Enthusiast**: Known for offering informal advice on car and motorcycle purchases. I enjoy exploring trails on weekends and going on long drives.  
+  - **Music**: Appreciate genres such as metal/punk rock, J-Rock indie, and electronic music.
+
+---
+
+### **Current Pursuits**
+
+- Exploring open-source projects in the security domain, particularly the [Artemis Scanner](https://github.com/CERT-Polska/Artemis).  
+- Diving deeper into binary exploitation and web security. I have foundational knowledge of malware analysis and other related topics.
+
+---
+
+### **What You Can Find Here**
+
+- **[Posts](/posts/)**: A collection of my ongoing projects and topics of interest.  
+- **[Tinkering](/tinkering/)**: A dedicated section for documenting my deep dives into niche topics, experimental notes, and explorations into technical rabbit holes.
+
+---
+
+### **Contact Information**
+Feel free to reach out to me via email at **ridhambhagat@gmail.com**.
+
+---
