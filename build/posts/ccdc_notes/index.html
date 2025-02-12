@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ridham's Blog</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">
+        <a href="/">CCDC Notes</a>
+      </h1>    
+        <nav class="site-nav">
+        
+          <a href="/">Home</a>
+        
+          <a href="/posts/">Blog Posts</a>
+        
+          <a href="/thoughts/">Thoughts</a>
+        
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <article class="post">
+      <h1>Red Team &amp; Blue Team Considerations</h1>
+<h2>Red Team Tools &amp; Tactics</h2>
+<p>Some notes I made while hanging around CCDC folks. </p>
+<h3>Cobalt Strike</h3>
+<ul>
+<li>A powerful red team tool combining <strong>Metasploit</strong> features with <strong>beaconing</strong> capabilities.</li>
+<li>Often leverages <code>rundll32.exe</code> for execution.</li>
+</ul>
+<h3>XAMPP</h3>
+<ul>
+<li>A simple way to establish a reverse shell.</li>
+</ul>
+<h3>Kerberoasting</h3>
+<ul>
+<li>Exploiting service tickets for credential extraction.</li>
+</ul>
+<h3>Windows Hash Storage</h3>
+<ul>
+<li>Equivalent to <code>/etc/hashes</code> in Linux.</li>
+<li>Located in <code>C:\Windows\System32\Config\SAM</code>.</li>
+<li>Unauthorized access to this directory should raise concern.</li>
+</ul>
+<h3>LSASS Credential Dumping</h3>
+<ul>
+<li>Tools like <strong>Mimikatz</strong> (<a href="https://github.com/ParrotSec/mimikatz">GitHub</a>) can extract password hashes.</li>
+<li><strong>LSASS process monitoring</strong> is crucial; unauthorized access may indicate credential theft.</li>
+<li><a href="https://www.microsoft.com/en-us/security/blog/2022/10/05/detecting-and-preventing-lsass-credential-dumping-attacks/">Microsoft guide</a> on preventing LSASS attacks.</li>
+</ul>
+<hr />
+<h2>System Security &amp; Hardening</h2>
+<h3>Administrator Account Security</h3>
+<ul>
+<li><code>net user Administrator *</code> does <strong>not</strong> save in history (safe for password changes).</li>
+<li><code>net user Administrator &lt;random&gt;</code> <strong>does</strong> save in history (not recommended).</li>
+</ul>
+<h3>Group Policy Management</h3>
+<ul>
+<li>Use <code>rsop</code> to check applied <strong>Group Policies</strong> (they may overlap and disable security settings).</li>
+<li><code>gpupdate</code> updates policies; requires <strong>relogin</strong> and may take time.</li>
+</ul>
+<h3>Domain &amp; Workgroup Security</h3>
+<ul>
+<li>Profile <strong>domain/workgroup</strong> to understand security implications.</li>
+<li><strong>Emergency "break glass" accounts</strong> should be pre-configured.</li>
+<li><strong>Do not disable user accounts</strong> unless necessary.</li>
+<li><strong>Avoid deleting accounts</strong> when disabling suffices.</li>
+</ul>
+<h3>Password &amp; Credential Security</h3>
+<ul>
+<li><strong>Change default passwords</strong> on all systems.</li>
+<li>Cached logins allow authentication without a domain controller.</li>
+<li>The <strong>number of cached logins</strong> can be adjusted in security settings.</li>
+<li><strong>Use TOTP-based MFA</strong> (e.g., Google Authenticator).</li>
+<li>Red teams may <strong>manipulate system time</strong> to break TOTP.</li>
+</ul>
+<hr />
+<h2>Active Directory &amp; Incident Response</h2>
+<h3>Common Active Directory Tasks</h3>
+<ul>
+<li><strong>Reset passwords</strong></li>
+<li><strong>Create/Delete user accounts</strong></li>
+<li><strong>Monitor Splunk logs</strong> (<code>IP_ADDRESS:8000</code> for access)</li>
+</ul>
+<h3>Security Monitoring</h3>
+<ul>
+<li><strong>Monitor system file access</strong>:</li>
+<li><code>C:\Windows\System32\Config\SAM</code> (Windows password hashes)</li>
+<li>If <strong>unprivileged users</strong> access <code>System32</code>, investigate immediately.</li>
+<li><strong>Monitor suspicious application behavior</strong>, especially in:</li>
+<li><code>C:\Intel\</code></li>
+<li><code>C:\AMD\</code> (Red teams often store tools here)</li>
+</ul>
+<h3>Windows Privilege Hierarchy</h3>
+<ul>
+<li><strong>SYSTEM</strong>: Most privileged Windows account, equivalent to <code>root</code> in Linux.</li>
+<li>Bypasses most <strong>syscall validation</strong>.</li>
+<li>Allows <strong>direct hardware access</strong> via drivers.</li>
+<li><strong>Administrator</strong>: Less privileged than SYSTEM, but still a high-risk account.</li>
+</ul>
+<hr />
+<h2>Kubernetes &amp; Cloud Security</h2>
+<h3>Kubernetes Control Plane Security</h3>
+<ul>
+<li><strong>Raft with etcd</strong> for state management.</li>
+<li><strong>Longhorn</strong>: Persistent storage management (PVC, PBC).</li>
+<li><strong>Time-series databases</strong> in Kubernetes (TCSB).</li>
+</ul>
+<h3>Cloud Services</h3>
+<ul>
+<li><strong>AWS Lex</strong>: AI-driven chatbot service.</li>
+<li><strong>Fluentd</strong> (<a href="https://www.fluentd.org/">fluentd.org</a>): Log aggregation.</li>
+</ul>
+<hr />
+<h2>Miscellaneous Security Considerations</h2>
+<ul>
+<li><strong>If a user has an active session</strong>, changes (e.g., password updates) may not take effect until logout.</li>
+<li>Some services may <strong>fail after password changes</strong>, requiring manual intervention.</li>
+<li><strong>Avoid unnecessary deletions</strong>—disable instead.</li>
+<li>Review <strong>NCAE Cyber Games</strong> checklist and set up a <strong>VM</strong> for testing.</li>
+</ul>
+    </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 My Cactus Dark Blog. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
