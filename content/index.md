@@ -40,7 +40,7 @@ I'm **Ridham Bhagat**, a cybersecurity student at Northeastern University. My pr
 ### **What You Can Find Here**
 
 - **[Posts](/posts/)**: A collection of my ongoing projects and topics of interest.  
-- **[Thoughts](/thoughts/)**: I think about some stuff and this should be a outlet for that
+- **[Thoughts](/thoughts/)**: I think about some stuff and this should be an outlet for that
 
 
 ### **Contact Information**
