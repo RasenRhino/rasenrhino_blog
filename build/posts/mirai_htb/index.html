@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ridham's Blog</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">
+        <a href="/">Mirai Machine</a>
+      </h1>    
+        <nav class="site-nav">
+        
+          <a href="/">Home</a>
+        
+          <a href="/posts/">Blog Posts</a>
+        
+          <a href="/thoughts/">Thoughts</a>
+        
+          <a href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <article class="post">
+      <p>Someone told me Mirai is an easy machine, so I decided to try it out.</p>
+<p>Sometimes do easy stuff, like you killed bots in CSGO </p>
+<p>Mirai was a botnet that essentially tried to crack down on devices using default passwords. </p>
+<p>Now all CTF writeup are very coherant, that is never the case with me (I should play more CTFs)
+So, I will just write it like a not so easy to replicate guide so that all the fun is not lost. </p>
+<h2>Running NMAP</h2>
+<p>Run a nmap and find some ports (ssh,tcp,http)</p>
+<p><img alt="alt text" src="/static/assets/mirai_htb_nmap.png" /></p>
+<p>We do get a debian version, it is advisable to look if something wrong with it, but the path integral of thoughts of my brain is inclined to look around more so that I find a more familiar something. </p>
+<h2>Do some gobuster</h2>
+<p>Doing some gobuster reveals <code>\admin</code> . Navigating there you get a pihole admin page. 
+Now , where do you find a pihole I wonder. 
+I am embarassed that I realised it way later than I was supposed to. </p>
+<h3>Realise it runs on raspberrypi</h3>
+<h4>Realise it is 'Mirai' botnet, so try default passwords</h4>
+<h6>It again took me longer to realise than that it should have</h6>
+<p>Just ssh after that and you see a <code>user.txt</code>. cat it and get a user flag. </p>
+<p><img alt="alt text" src="/static/assets/mirai_htb_userflag.png" /></p>
+<h3>But</h3>
+<h4>But</h4>
+<h5>But</h5>
+<p>You cannot call it a day here, because if you stop now, you won't continue it , ever, so I decided to do the root flag and give myself an excuse to binge entire solo levelling for the 10th time again. </p>
+<h2>Find the root flag</h2>
+<p>You caveman rawdog the find command with keywords like root, flag</p>
+<p>And you find it by </p>
+<p><code>sudo find / "*root*" | grep root.txt</code></p>
+<p>And you get these </p>
+<pre class="codehilite"><code>/lib/live/mount/persistence/sda2/root/root.txt
+/root/root.txt
+</code></pre>
+
+<p>Which one I choose to check out is obvious </p>
+<p>But you cannot just read the root.txt, </p>
+<p><code>ls: cannot open directory root/: Permission denied</code></p>
+<p>I am not proud of the fact my first thought was to look at those Debian version exploits here, some linpeas? </p>
+<p>I just had to <code>su -</code> 
+(if you didn't realise that instinticively, interesting)</p>
+<pre class="codehilite"><code>root@raspberrypi:~# cat root.txt 
+I lost my original root.txt! I think I may have a backup on my USB stick...
+</code></pre>
+
+<p>Looks like I will have to explore the other mount point that came out of find command. </p>
+<pre class="codehilite"><code>root@raspberrypi:/lib/live/mount/persistence/sda2/root# ls
+root.txt
+root@raspberrypi:/lib/live/mount/persistence/sda2/root# cat root.txt 
+I lost my original root.txt! I think I may have a backup on my USB stick...
+</code></pre>
+
+<p>well , USB == lsblk </p>
+<pre class="codehilite"><code>root@raspberrypi:~# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   10G  0 disk 
+├─sda1   8:1    0  1.3G  0 part /lib/live/mount/persistence/sda1
+└─sda2   8:2    0  8.7G  0 part /lib/live/mount/persistence/sda2
+sdb      8:16   0   10M  0 disk /media/usbstick
+sr0     11:0    1 1024M  0 rom  
+loop0    7:0    0  1.2G  1 loop /lib/live/mount/rootfs/filesystem.squashfs
+</code></pre>
+
+<p>there is a usbstick </p>
+<pre class="codehilite"><code>root@raspberrypi:/media/usbstick# ls
+damnit.txt  lost+found
+root@raspberrypi:/media/usbstick# cat damnit.txt 
+Damnit! Sorry man I accidentally deleted your files off the USB stick.
+Do you know if there is any way to get them back?
+
+-James
+</code></pre>
+
+<p>At this point , I turned to some blogs. (uhm chatgpt)
+Again, I skimmed so that I don't get the full answer. 
+I saw "strings"</p>
+<p>I ran the command wherever I thought it was relevant (to me, which is not an objective metric for relevance, nor is a wise way, take a minute or two to think where you should run it and you should have your answer)</p>
+<pre class="codehilite"><code>root@raspberrypi:/media/usbstick# strings /dev/sdb
+\F\f\F\f
+&gt;r &amp;
+/media/usbstick
+lost+found
+root.txt
+damnit.txt
+&gt;r &amp;
+&gt;r &amp;
+/media/usbstick
+lost+found
+root.txt
+damnit.txt
+&gt;r &amp;
+/media/usbstick
+2]8^
+lost+found
+root.txt
+damnit.txt
+&gt;r &amp;
+3d3e483143ff12ec505d026fa13e020b
+Damnit! Sorry man I accidentally deleted your files off the USB stick.
+Do you know if there is any way to get them back?
+-James
+</code></pre>
+
+<p>There is a weird string
+That was the flag </p>
+<p>The End</p>
+    </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 My Cactus Dark Blog. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
