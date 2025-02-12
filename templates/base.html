@@ -20,12 +20,12 @@
     </div>
   </header>
   <main class="container">
-    <article class="post">
+    <!-- <article class="post">
       {{ content | safe }}
-    </article>
+    </article> -->
     {% if listing %}
     <aside class="post-list">
-      <h2>More Posts</h2>
+      <!-- <h2>More Posts</h2> -->
       <ul>
         {% for item in listing %}
           <li><a href="{{ item.url }}">{{ item.title }}</a></li>

@@ -24,7 +24,7 @@ I'm **Ridham Bhagat**, a cybersecurity student at Northeastern University. My pr
 - **Software-Defined Radios (SDRs)**:  
     Played around with SDRs and still want to.
 
-- **Personal Interests**:  
+### **Personal Interests**:  
   - **Automotive Enthusiast**: Known for offering informal advice on car and motorcycle purchases. I enjoy exploring trails on weekends and going on long drives.  
   - **Music**: Appreciate genres such as metal/punk rock, J-Rock indie, and electronic music.
 
