@@ -3,4 +3,4 @@ title: Thoughts
 ---
 
 Documentation of my thought experiments.
-Just an abstraction of normal 
+Trying to abstract and possibly quantify somethings around me. 
