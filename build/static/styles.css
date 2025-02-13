@@ -11,6 +11,7 @@
     background-color: #1d1f21; /* Deep dark background */
     color: #e0e0e0;
     line-height: 1.6;
+    padding: 20px;
   }
   
   /* Links */
@@ -26,8 +27,15 @@
   .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem; /* Top/bottom: 2rem, Left/right: 1rem */
   }
+  
+  @media (max-width: 600px) {
+    .container {
+      padding: 1rem; /* Reduce padding on narrow screens */
+    }
+  }
+  
   
   /* Header */
   .site-header {
@@ -107,13 +115,36 @@
 }
 
 /* Optional: Improve the look of inline code as well */
+pre {
+  background-color: #2d2d2d; /* Example dark background */
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  
+  /* Key properties for horizontal scrolling */
+  white-space: pre;   /* Keeps code lines on one line instead of wrapping */
+  overflow-x: auto;   /* Adds a horizontal scrollbar if needed */
+  overflow-y: hidden; /* (Optional) Hide vertical scrollbar if you prefer */
+  
+  /* Ensure wide code doesn't break your layout */
+  max-width: 100%;    
+  box-sizing: border-box;
+}
+
 code {
-  background-color: #2d2d2d;
+  background-color: #2d2d2d; 
   color: #f8f8f2;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+img {
+  max-width: 100%; /* Scale images down on small screens */
+  height: auto;
+  display: block;
+}
+
 
   
   /* Responsive */

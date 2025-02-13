@@ -21,18 +21,24 @@ I'm **Ridham Bhagat**, a cybersecurity student at Northeastern University. My pr
 - **Security**:  
   I like application and network security. I am actively exploring malware analysis, web security, and related domains. Check out my [posts](/posts/) for updates on my recent stuff.
 
+---
+
 ### **Personal Interests**:  
   - **Automotive Enthusiast**: Known for offering informal advice on car and motorcycle purchases. I enjoy exploring trails on weekends and going on long drives.  
   - **Music**: Appreciate genres such as metal/punk rock, J-Rock indie, and electronic music.
 
+
 ---
+
 
 ### **Current Pursuits**
 
 - Exploring open-source projects in the security domain, particularly the [Artemis Scanner](https://github.com/CERT-Polska/Artemis).  
 - Diving deeper into binary exploitation and web security. I have foundational knowledge of malware analysis and other related topics.
 
+
 ---
+
 
 ### **What You Can Find Here**
 
